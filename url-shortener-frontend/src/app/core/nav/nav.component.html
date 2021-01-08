@@ -1,9 +1,8 @@
 <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper purple lighten-1">
         <a href="#" class="brand-logo">Encurtar URL</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="badges.html">Entrar</a></li>
-            <li><a href="collapsible.html" style="display: none;">Sair</a></li>
+            <li><a *ngIf="!hide && user" (click)="logout()">Sair</a></li>
         </ul>
     </div>
 </nav>
