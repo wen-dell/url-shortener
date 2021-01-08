@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ToasterService } from '../core/shared/toaster.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +12,12 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
 
-  constructor(private builder: FormBuilder, private router: Router) { }
+  constructor(
+    private builder: FormBuilder,
+    private router: Router,
+    private toasterService: ToasterService) {
+
+  }
 
   ngOnInit(): void {
     this.form = this.builder.group({
@@ -26,7 +33,7 @@ export class LoginComponent implements OnInit {
     if (user == 'user' && pass == '123') {
       this.router.navigate(['/home']);
     } else {
-      alert('Usuário ou senha incorretos');
+      this.toasterService.error('Usuário ou senha incorretos!');
     }
   }
 
