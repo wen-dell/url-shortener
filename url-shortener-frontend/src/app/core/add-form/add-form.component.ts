@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClipboardService } from 'ngx-clipboard';
+import { ToasterService } from '../shared/toaster.service';
 
 @Component({
   selector: 'app-add-form',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private clipboardService: ClipboardService, private toasterService: ToasterService) { }
 
   ngOnInit(): void {
+  }
+
+  copy(url: string) {
+    this.clipboardService.copy(url);
+    this.toasterService.info('Conteúdo copiado!');
   }
 
 }
