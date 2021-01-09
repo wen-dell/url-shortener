@@ -1,4 +1,4 @@
-package br.com.ouvidoriamb.api.controller;
+package br.com.urlshortener.api.controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +13,6 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,13 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.urlshortener.data.ApiResponse;
 import br.com.urlshortener.data.PaginatedData;
 import br.com.urlshortener.data.Pagination;
-import br.com.urlshortener.domain.model.User;
-import br.com.urlshortener.domain.repository.UserRepository;
+import br.com.urlshortener.domain.model.UserURL;
 import br.com.urlshortener.domain.service.CrudUserURLService;
-import br.com.urlshortener.domain.service.criteria.UserCriteria;
+import br.com.urlshortener.domain.service.criteria.UserURLCriteria;
+
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/u")
 public class UserUrlController {
 
 	private final List<Integer> SIZE_DEFAULT = Arrays.asList(5, 10, 15, 20);
@@ -37,30 +36,27 @@ public class UserUrlController {
 	@Autowired
 	private CrudUserURLService crudUserURLService;
 
-	@Autowired
-	private UserRepository userRepository;
-
 	@GetMapping
 	public ResponseEntity<ApiResponse> listAllUserUrl(
 			@SortDefault.SortDefaults({ @SortDefault(sort = "id", direction = Sort.Direction.DESC) }) Pageable pageable,
-			UserCriteria userCriteria) {
+			UserURLCriteria userURLCriteria) {
 		if (!SIZE_DEFAULT.contains(pageable.getPageSize())) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.of("Informe um tamanho válido: 5, 10, 15 ou 20"));
 		}
 
-		final Page<User> pagedRevenue = crudUserURLService.findByCriteria(userCriteria, pageable);
+		final Page<UserURL> pagedRevenue = crudUserURLService.findByCriteria(userURLCriteria, pageable);
 
-		final List<User> users = pagedRevenue.getContent();
+		final List<UserURL> urls = pagedRevenue.getContent();
 
 		final Pagination pagination = Pagination.from(pagedRevenue, pageable);
 
-		return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.of("", new PaginatedData<>(users, pagination)));
+		return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.of("", new PaginatedData<>(urls, pagination)));
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public User insert(@Valid @RequestBody User user) {
-		return crudUserURLService.save(user);
+	public UserURL insert(@Valid @RequestBody UserURL userURL) {
+		return crudUserURLService.save(userURL);
 	}
 
 }
