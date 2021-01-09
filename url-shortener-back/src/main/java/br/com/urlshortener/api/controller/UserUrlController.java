@@ -28,7 +28,7 @@ import br.com.urlshortener.domain.service.criteria.UserURLCriteria;
 
 
 @RestController
-@RequestMapping("/u")
+@RequestMapping("/url")
 public class UserUrlController {
 
 	private final List<Integer> SIZE_DEFAULT = Arrays.asList(5, 10, 15, 20);

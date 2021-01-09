@@ -36,14 +36,13 @@ public class UserURL {
 	@Column(name = "generated_url")
 	private String generatedUrl;
 
-	@Column(name = "date")
+	@Column(name = "date_generation")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
 	@Column(name = "code")
 	private String code;
 
-	@Column(name = "user_id")
 	@ManyToOne
 	private User user;
 
