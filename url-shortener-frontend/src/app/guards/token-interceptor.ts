@@ -31,7 +31,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
                 if (error.status === 401) {
                     sessionStorage.removeItem('token');
-                    this.router.navigate(['/login']);
+                    this.router.navigateByUrl('');
                 }
             }
 

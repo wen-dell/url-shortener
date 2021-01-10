@@ -6,7 +6,7 @@ import { SessionStorageService } from '../core/shared/session-storage.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginGuard implements CanActivate {
+export class ForwardHomeGuard implements CanActivate {
 
   constructor(
     private router: Router,
@@ -19,11 +19,12 @@ export class LoginGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let token = this.sessionStorageService.retrieve('token');
 
-    if (token) {
-      return true;
-    }
+    if (next.routeConfig.path == 'login' && token) {
+        this.router.navigateByUrl('home');
+        return false;
+      }
 
-    return false;
+    return true;
   }
 
 }

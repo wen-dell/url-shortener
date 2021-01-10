@@ -18,6 +18,7 @@ export class RedirectComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit(): void {
+    console.log('redirect');
     const code = this.activatedRoute.snapshot.url[0].path;
     this.subscription = this.redirectService.getByCode(code)
      .subscribe((response: any) => {

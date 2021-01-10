@@ -52,7 +52,7 @@ export class AddFormComponent implements OnInit {
       this.toasterService.success('URL encurtada com sucesso!');
     },
     (error: any) => {
-      console.log(error);  
+      this.toasterService.error(error.error.message);  
     });
   }
 
