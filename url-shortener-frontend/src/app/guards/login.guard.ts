@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SessionStorageService } from '../core/shared/session-storage.service';
 
@@ -8,7 +8,9 @@ import { SessionStorageService } from '../core/shared/session-storage.service';
 })
 export class LoginGuard implements CanActivate {
 
-  constructor(private sessionStorageService: SessionStorageService) {
+  constructor(
+    private router: Router,
+    private sessionStorageService: SessionStorageService) {
 
   }
 
@@ -17,11 +19,15 @@ export class LoginGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let token = this.sessionStorageService.retrieve('token');
 
+    if (next.routeConfig.path == 'login' && token) {
+      this.router.navigateByUrl('home');
+    }
+
     if (token) {
       return true;
     }
 
     return false;
   }
-  
+
 }

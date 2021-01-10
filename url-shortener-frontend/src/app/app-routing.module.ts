@@ -9,7 +9,8 @@ import { RedirectComponent } from './redirect/redirect.component';
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'home',
