@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(schema = "auth", name = "token")
+@Table(name = "token")
 public class Token {
 
 	@Id
@@ -24,7 +24,7 @@ public class Token {
 	@Column(name = "user_id")
 	private Long userId;
 
-	@Column(name = "token_acesso")
+	@Column(name = "access_token")
 	private String accessToken;
 
 	@Column(name = "log_date")
