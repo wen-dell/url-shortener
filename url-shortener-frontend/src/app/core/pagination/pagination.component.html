@@ -1,9 +1,5 @@
-<ul class="pagination">
-    <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a>1</a></li>
-    <li class="waves-effect"><a>2</a></li>
-    <li class="waves-effect"><a>3</a></li>
-    <li class="waves-effect"><a>4</a></li>
-    <li class="waves-effect"><a>5</a></li>
-    <li class="waves-effect"><a><i class="material-icons">chevron_right</i></a></li>
+<ul class="pagination" *ngIf="pagination">
+    <li [ngClass]="pagination.firstPage ? 'disabled' : ''"><a (click)="previous()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
+    <li *ngFor="let page of pages" [ngClass]="pagination.page == page ? 'active' : ''"><a (click)="choose(page)">{{ page }}</a></li>
+    <li [ngClass]="!pagination.hasNextPage ? 'disabled' : ''"><a (click)="next()"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
 </ul>

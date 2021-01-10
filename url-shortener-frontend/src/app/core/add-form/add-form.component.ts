@@ -48,7 +48,6 @@ export class AddFormComponent implements OnInit {
 
     this.addFormService.generateUrl(userURL)
     .subscribe((res: any) => {
-      this.url?.reset();
       this.applyValue(res.generatedUrl);
       this.toasterService.success('URL encurtada com sucesso!');
     },

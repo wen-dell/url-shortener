@@ -14,44 +14,16 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td><a href="https://cutt.ly/Bjj04RE">https://cutt.ly/Bjj04RE</a></td>
+                    <tr *ngFor="let url of urls">
+                        <td><a href="{{ url.generatedUrl }}">{{ url.generatedUrl }}</a></td>
                         <td><a
-                                href="https://github.com/wen-dell/url-shortener">https://github.com/wen-dell/url-shortener</a>
+                                href="{{ url.originalUrl }}">{{ url.originalUrl }}</a>
                         </td>
-                        <td class="date">07/01/2021</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://cutt.ly/Bjj04RE">https://cutt.ly/Bjj04RE</a></td>
-                        <td><a
-                                href="https://github.com/wen-dell/url-shortener">https://github.com/wen-dell/url-shortener</a>
-                        </td>
-                        <td class="date">07/01/2021</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://cutt.ly/Bjj04RE">https://cutt.ly/Bjj04RE</a></td>
-                        <td><a
-                                href="https://github.com/wen-dell/url-shortener">https://github.com/wen-dell/url-shortener</a>
-                        </td>
-                        <td class="date">07/01/2021</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://cutt.ly/Bjj04RE">https://cutt.ly/Bjj04RE</a></td>
-                        <td><a
-                                href="https://github.com/wen-dell/url-shortener">https://github.com/wen-dell/url-shortener</a>
-                        </td>
-                        <td class="date">07/01/2021</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://cutt.ly/Bjj04RE">https://cutt.ly/Bjj04RE</a></td>
-                        <td><a
-                                href="https://github.com/wen-dell/url-shortener">https://github.com/wen-dell/url-shortener</a>
-                        </td>
-                        <td class="date">07/01/2021</td>
+                        <td class="date">{{ url.date | date:'dd/MM/yyyy HH:mm' }}</td>
                     </tr>
                 </tbody>
             </table>
-            <app-pagination></app-pagination>
+            <app-pagination [pagination]="pagination" (changePage)="pageChanged($event)"></app-pagination>
         </div>
     </div>
 </div>
