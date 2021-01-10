@@ -1,5 +1,5 @@
-<ul class="pagination" *ngIf="pagination">
+<ul class="pagination" *ngIf="pagination?.totalNumberOfElements > 0">
     <li [ngClass]="pagination.firstPage ? 'disabled' : ''"><a (click)="previous()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
-    <li *ngFor="let page of pages" [ngClass]="pagination.page == page ? 'active' : ''"><a (click)="choose(page)">{{ page }}</a></li>
+    <li class="disabled" *ngFor="let page of pages" [ngClass]="pagination.page == page ? 'active' : ''"><a>{{ page }}</a></li>
     <li [ngClass]="!pagination.hasNextPage ? 'disabled' : ''"><a (click)="next()"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
 </ul>

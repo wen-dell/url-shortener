@@ -52,7 +52,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		
 		http.cors().configurationSource(corsConfigurationSource());
 
-		http.authorizeRequests().antMatchers("/token/**", "/password/*").permitAll().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/token/**", "/url/code/**").permitAll().anyRequest().authenticated();
 		http.exceptionHandling().authenticationEntryPoint(unauthorizedHandler);
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 	}

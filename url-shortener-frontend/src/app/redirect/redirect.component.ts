@@ -18,7 +18,6 @@ export class RedirectComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit(): void {
-    console.log('redirect');
     const code = this.activatedRoute.snapshot.url[0].path;
     this.subscription = this.redirectService.getByCode(code)
      .subscribe((response: any) => {
@@ -26,7 +25,7 @@ export class RedirectComponent implements OnInit, OnDestroy {
          const url = response.originalUrl;
          location.href = url;
        } else {
-        this.router.navigateByUrl('home');
+        this.router.navigateByUrl('login');
        }
     });
   }

@@ -26,9 +26,8 @@ export class TokenInterceptor implements HttpInterceptor {
         }
 
         return next.handle(request).pipe(tap(() => { }, (error: any) => {
-
             if (error instanceof HttpErrorResponse) {
-
+                console.log('aaaaaa');
                 if (error.status === 401) {
                     sessionStorage.removeItem('token');
                     this.router.navigateByUrl('');

@@ -3,8 +3,9 @@
 <div class="container">
     <div class="row">
         <div class="col s12">
-            <h4>Suas URLs <a class="waves-effect waves-light btn" routerLink="/home">GERAR NOVA</a></h4> 
-            <table>
+            <h4>Suas URLs <a class="waves-effect waves-light btn" routerLink="/home">GERAR NOVA</a></h4>
+            <div class="center">Não foi encontrada nenhuma URL!</div> 
+            <table *ngIf="pagination?.totalNumberOfElements > 0">
                 <thead>
                     <tr>
                         <th>URL encurtada</th>
