@@ -4,10 +4,11 @@ import { ListComponent } from './core/list/list.component';
 import { LoginGuard } from './guards/login.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { RedirectComponent } from './redirect/redirect.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'login',
     component: LoginComponent
   },
   {
@@ -19,6 +20,16 @@ const routes: Routes = [
     path: 'listagem',
     component: ListComponent,
     canActivate: [LoginGuard]
+  }, 
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'login'
+  },
+  {
+    path: '**',
+    pathMatch: 'full', 
+    component: RedirectComponent
   }
 ];
 

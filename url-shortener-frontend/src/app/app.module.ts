@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TokenInterceptor } from './guards/token-interceptor';
+import { RedirectComponent } from './redirect/redirect.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TokenInterceptor } from './guards/token-interceptor';
     LoginComponent,
     HomeComponent,
     PaginationComponent,
-    AddFormComponent
+    AddFormComponent,
+    RedirectComponent
   ],
   imports: [
     BrowserModule,

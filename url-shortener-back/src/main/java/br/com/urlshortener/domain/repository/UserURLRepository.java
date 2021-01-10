@@ -14,5 +14,6 @@ import br.com.urlshortener.domain.model.UserURL;
 public interface UserURLRepository extends JpaRepository<UserURL, Long>, JpaSpecificationExecutor<UserURL> {
 
 	Page<UserURL> findAll(Pageable pageable);
+	UserURL findByCode(String code);
 	
 }

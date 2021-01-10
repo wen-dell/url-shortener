@@ -13,6 +13,7 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import br.com.urlshortener.data.ApiResponse;
 import br.com.urlshortener.data.PaginatedData;
 import br.com.urlshortener.data.Pagination;
 import br.com.urlshortener.domain.model.UserURL;
+import br.com.urlshortener.domain.repository.UserURLRepository;
 import br.com.urlshortener.domain.service.CrudUserURLService;
 import br.com.urlshortener.domain.service.criteria.UserURLCriteria;
 
@@ -32,6 +34,9 @@ import br.com.urlshortener.domain.service.criteria.UserURLCriteria;
 public class UserURLController {
 
 	private final List<Integer> SIZE_DEFAULT = Arrays.asList(5, 10, 15, 20);
+	
+	@Autowired
+	private UserURLRepository userURLRepository;
 
 	@Autowired
 	private CrudUserURLService crudUserURLService;
@@ -51,6 +56,11 @@ public class UserURLController {
 		final Pagination pagination = Pagination.from(pagedRevenue, pageable);
 
 		return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.of("", new PaginatedData<>(urls, pagination)));
+	}
+	
+	@GetMapping("/code/{urlCode}")
+	public UserURL findByCode(@PathVariable("urlCode") String urlCode) {
+		return userURLRepository.findByCode(urlCode);
 	}
 
 	@PostMapping
