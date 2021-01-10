@@ -39,17 +39,17 @@ public class JwtTokenUtil {
         return expiration.before(new Date());
     }
 
-    private String tokenBuilder(String subject) {
-        final Claims claims = Jwts.claims().setSubject(subject);
+    private String tokenBuilder(User user) {
+        final Claims claims = Jwts.claims().setSubject(user.getLogin());        
 
         final Date issuedAt = new Date(System.currentTimeMillis());
         final Date expiration = new Date(System.currentTimeMillis() + accessTokenValiditySeconds * 1000);
-        return Jwts.builder().setClaims(claims).setIssuer("http://localhost:8080").setIssuedAt(issuedAt)
+        return Jwts.builder().setClaims(claims).claim("userId", user.getId()).setIssuer("http://localhost:8080").setIssuedAt(issuedAt)
                 .setExpiration(expiration).signWith(SignatureAlgorithm.HS256, signingKey).compact();
     }
 
     public String generateToken(User user) {
-        return tokenBuilder(user.getLogin());
+        return tokenBuilder(user);
     }
 
     public Boolean validateToken(String token, String login) {

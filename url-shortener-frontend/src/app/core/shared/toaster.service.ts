@@ -11,7 +11,7 @@ export class ToasterService {
     }
 
     success(msg: string) {
-        this.toastrService.error(msg, 'Sucesso');
+        this.toastrService.success(msg, 'Sucesso');
     } 
     
     error(msg: string) {
@@ -23,7 +23,7 @@ export class ToasterService {
     } 
     
     warning(msg: string) {
-        this.toastrService.info(msg, 'Atenção');
+        this.toastrService.warning(msg, 'Atenção');
     } 
 
 }
