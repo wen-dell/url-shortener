@@ -18,7 +18,7 @@ export class LoginService {
   }
 
   public redirect() {
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('home');
   }
 
 }

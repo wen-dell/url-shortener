@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SessionStorageService } from '../shared/session-storage.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,13 +12,14 @@ export class NavComponent implements OnInit {
   @Input() hide = false;
   user = {name: 'e'};
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sessionStorageService: SessionStorageService) { }
 
   ngOnInit(): void {
   }
 
   logout() {
-    this.router.navigate(['']);
+    this.sessionStorageService.clear();
+    this.router.navigateByUrl('');
   }
 
 }
