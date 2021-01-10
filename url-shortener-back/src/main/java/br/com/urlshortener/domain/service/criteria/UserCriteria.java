@@ -7,10 +7,10 @@ import org.springframework.data.jpa.domain.Specification;
 @Data
 public class UserCriteria {
 
-	private String name;
+	private String login;
 
-	public static Specification<User> name(String name) {
-		return ((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("name"),
-				"%" + name.toUpperCase() + "%"));
+	public static Specification<User> login(String login) {
+		return ((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("login"),
+				"%" + login.toUpperCase() + "%"));
 	}
 }

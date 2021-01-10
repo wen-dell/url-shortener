@@ -29,29 +29,29 @@ import br.com.urlshortener.domain.service.criteria.UserURLCriteria;
 
 @RestController
 @RequestMapping("/url")
-public class UserUrlController {
+public class UserURLController {
 
-	private final List<Integer> SIZE_DEFAULT = Arrays.asList(5, 10, 15, 20);
+//	private final List<Integer> SIZE_DEFAULT = Arrays.asList(5, 10, 15, 20);
 
 	@Autowired
 	private CrudUserURLService crudUserURLService;
 
-	@GetMapping
-	public ResponseEntity<ApiResponse> listAllUserUrl(
-			@SortDefault.SortDefaults({ @SortDefault(sort = "id", direction = Sort.Direction.DESC) }) Pageable pageable,
-			UserURLCriteria userURLCriteria) {
-		if (!SIZE_DEFAULT.contains(pageable.getPageSize())) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.of("Informe um tamanho válido: 5, 10, 15 ou 20"));
-		}
-
-		final Page<UserURL> pagedRevenue = crudUserURLService.findByCriteria(userURLCriteria, pageable);
-
-		final List<UserURL> urls = pagedRevenue.getContent();
-
-		final Pagination pagination = Pagination.from(pagedRevenue, pageable);
-
-		return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.of("", new PaginatedData<>(urls, pagination)));
-	}
+//	@GetMapping
+//	public ResponseEntity<ApiResponse> listAllUserUrl(
+//			@SortDefault.SortDefaults({ @SortDefault(sort = "id", direction = Sort.Direction.DESC) }) Pageable pageable,
+//			UserURLCriteria userURLCriteria) {
+//		if (!SIZE_DEFAULT.contains(pageable.getPageSize())) {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.of("Informe um tamanho válido: 5, 10, 15 ou 20"));
+//		}
+//
+//		final Page<UserURL> pagedRevenue = crudUserURLService.findByCriteria(userURLCriteria, pageable);
+//
+//		final List<UserURL> urls = pagedRevenue.getContent();
+//
+//		final Pagination pagination = Pagination.from(pagedRevenue, pageable);
+//
+//		return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.of("", new PaginatedData<>(urls, pagination)));
+//	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
