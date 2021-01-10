@@ -24,22 +24,22 @@ public class CrudUserURLService {
 	@Autowired
 	private UserURLRepository userURLRepository;
 	
-//	public Page<UserURL> findByCriteria(UserURLCriteria criteria, Pageable page) {
-//		log.debug("find by criteria : {}, page: {}", criteria, page);
-//		final Specification<UserURL> specification = createSpecifications(criteria);
-//		return userURLRepository.findAll(specification, page);
-//	}
-//
-//	private Specification<UserURL> createSpecifications(UserURLCriteria criteria) {
-//		Specification<UserURL> specification = Specification.where(null);
-//
-//		if (criteria == null) return specification;
-//		if (criteria.getUserId() != null) {
-//			specification = specification.and(UserURLCriteria.user(criteria.getUserId()));
-//		}
-//
-//		return specification;
-//	}
+	public Page<UserURL> findByCriteria(UserURLCriteria criteria, Pageable page) {
+		log.debug("find by criteria : {}, page: {}", criteria, page);
+		final Specification<UserURL> specification = createSpecifications(criteria);
+		return userURLRepository.findAll(specification, page);
+	}
+
+	private Specification<UserURL> createSpecifications(UserURLCriteria criteria) {
+		Specification<UserURL> specification = Specification.where(null);
+
+		if (criteria == null) return specification;
+		if (criteria.getUserId() != null) {
+			specification = specification.and(UserURLCriteria.user(criteria.getUserId()));
+		}
+
+		return specification;
+	}
 
 	
 	public UserURL save(UserURL userURL) {
