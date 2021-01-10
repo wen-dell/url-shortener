@@ -64,10 +64,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       return;
     }
 
-    final User user = userRepository.findByName(login);
+    final User user = userRepository.findByLogin(login);
     final Token token = tokenRepository.findByUserId(user.getId());
 
-    if (!jwtTokenUtil.validateToken(accessToken, user.getName())) {
+    if (!jwtTokenUtil.validateToken(accessToken, user.getLogin())) {
       logger.error("[JWT] :: O token utilizado pelo usuário " + login + " é invalido, token: " + accessToken);
       filterChain.doFilter(request, response);
       return;
@@ -85,7 +85,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     response.setHeader(JwtTokenUtil.headerName, JwtTokenUtil.tokenPrefix + newToken);
 
-    final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getName());
+    final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getLogin());
 
     final UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
             null, Arrays.asList(new SimpleGrantedAuthority("USER")));

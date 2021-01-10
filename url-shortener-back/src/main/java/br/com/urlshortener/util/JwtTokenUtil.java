@@ -49,7 +49,7 @@ public class JwtTokenUtil {
     }
 
     public String generateToken(User user) {
-        return tokenBuilder(user.getName());
+        return tokenBuilder(user.getLogin());
     }
 
     public Boolean validateToken(String token, String login) {

@@ -16,7 +16,7 @@ CREATE SEQUENCE user_url_id_seq
 CREATE TABLE public.user
 (
     id bigint NOT NULL DEFAULT nextval('user_id_seq'::regclass),
-    name character varying COLLATE pg_catalog."default" NOT NULL,
+    login character varying COLLATE pg_catalog."default" NOT NULL,
     password character varying COLLATE pg_catalog."default" NOT NULL,
     email character varying COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT user_pkey PRIMARY KEY (id)

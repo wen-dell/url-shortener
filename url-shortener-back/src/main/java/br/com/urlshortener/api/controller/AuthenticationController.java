@@ -58,7 +58,7 @@ public class AuthenticationController {
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		final User user = userRepository.findByName(name);
+		final User user = userRepository.findByLogin(name);
 
 		final String jwtToken = jwtTokenUtil.generateToken(user);
 
@@ -72,7 +72,7 @@ public class AuthenticationController {
 
 		tokenRepository.save(token);
 
-		final AuthToken authToken = new AuthToken(jwtToken, user.getName(), user.getId());
+		final AuthToken authToken = new AuthToken(jwtToken, user.getLogin(), user.getId());
 
 		return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.of("Acesso concedido", authToken));
 

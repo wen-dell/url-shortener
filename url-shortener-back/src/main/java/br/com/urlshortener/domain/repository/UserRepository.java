@@ -10,7 +10,7 @@ import br.com.urlshortener.domain.model.User;
 @Repository
 @Transactional("TransactionManager")
 public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
-	
-	User findByName(String name);
+
+	User findByLogin(String login);
 
 }
